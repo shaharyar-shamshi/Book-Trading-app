@@ -1,0 +1,19 @@
+include mixins
+doctype html
+html(lang="en")
+    head
+        +boilerplate
+    body
+        +nav("BookTrade","navigation_menu","default")
+            +nav_item("#","active") All Books
+            li(style="padding:15px;") Welcome anonymous
+            +nav_item("/signup") Twitter Signin
+        div(class="container-fluid")
+            div(class="row")
+                div(class="col-md-12 col-xs-12",id="booksContainer",style="text-align:center")
+                    h2 All Books
+                    if(arr)
+                        for item in arr
+                            div(class="col-md-2 col-xs-6",style="text-align:center")
+                                img(style="width:90%;height:150px;",src=item.thumbnail)
+                                p #{item.name}

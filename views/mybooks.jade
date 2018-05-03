@@ -1,0 +1,39 @@
+include mixins
+doctype html
+html(lang="en")
+    head
+        +boilerplate
+        link(rel="stylesheet",type="text/css",href="/css/mybooks.css")
+        script(src="/js/mybooks.js")
+    body
+        if(userinfo)
+            - var name=userinfo["user"]
+            - var book=userinfo["books"]
+        +nav("BookTrade","navigation_menu")
+            +nav_item("#","active") My books
+            +nav_item("/home") All books
+            +nav_item("/signout") Signout
+        div(class="container-fluid")
+            div(class="row")
+                div(class="col-md-4")
+                div(class="col-md-4 col-xs-12",style="text-align:center")
+                    div(class="btn-group btn-group-block")
+                        button(id="tradeOut",class="btn") Your trade request
+                        button(id="tradeIn",class="btn") Trade request for you
+                    div(id="displayTradeIn")
+                    div(id="displayTradeOut")
+                    h3 Search books
+                    input(class="form-input",placeholder="The Alchemist",type="text",id="bookName")
+                    button(class="btn",id="search") Go
+                div(class="col-md-4")
+            div(class="row")
+                div(class="col-md-12 col-xs-12",id="oldBooksContainer",style="text-align:center")
+                    h2(style="text-align:center") My books
+                    if(userinfo)
+                        for item in book
+                            div(class="col-md-2 col-xs-6",style="text-align:center")    
+                                img(style="width:90%;height:150px;",src=item.picLink)
+                                p #{item.name}
+                                button(class="remove") Remove
+                //div(class="col-md-12 col-xs-12",id="newBooksContainer",style="text-align:center")
+
